@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDN News DAO Portal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-10">
+        <div class="bg-blue-600 p-6 text-white text-center">
+            <h1 class="text-2xl font-bold">SDN News DAO</h1>
+            <p class="text-sm opacity-80">سرائے عالمگیر کی آواز</p>
+        </div>
+        <div class="p-8 text-center">
+            <button id="connectBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full w-full mb-4 transition">
+                والٹ کنیکٹ کریں
+            </button>
+            <button id="claimBtn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full w-full hidden transition">
+                ٹوکن کلیم کریں
+            </button>
+            <p id="statusMessage" class="mt-6 text-gray-700 font-medium"></p>
+        </div>
+        <div class="bg-gray-50 py-4 px-8 border-t text-center">
+            <p class="text-xs text-gray-400 font-bold">SDN News: باخبر، ہر لمحہ</p>
+        </div>
+    </div>
+
+    <script>
+        const contractAddress = "0x74c8835fFA98a32aE7534EcD08639bDAc9bc4FE3";
+        const abi = [{"inputs":[],"name":"claimTokens","outputs":[],"stateMutability":"nonpayable","type":"function"}];
+
+        let signer;
+        let contract;
+
+        async function init() {
+            if (window.ethereum) {
+                const provider = new ethers.BrowserProvider(window.ethereum);
+                document.getElementById('connectBtn').onclick = async () => {
+                    try {
+                        const accounts = await provider.send("eth_requestAccounts", []);
+                        signer = await provider.getSigner();
+                        contract = new ethers.Contract(contractAddress, abi, signer);
+                        document.getElementById('connectBtn').classList.add('hidden');
+                        document.getElementById('claimBtn').classList.remove('hidden');
+                        document.getElementById('statusMessage').innerText = "والٹ جڑ گیا: " + accounts[0].substring(0, 6) + "...";
+                    } catch (err) {
+                        document.getElementById('statusMessage').innerText = "والٹ کنیکٹ کرنے میں غلطی ہوئی۔";
+                    }
+                };
+
+                document.getElementById('claimBtn').onclick = async () => {
+                    try {
+                        document.getElementById('statusMessage').innerText = "ٹرانزیکشن جاری ہے...";
+                        const tx = await contract.claimTokens();
+                        await tx.wait();
+                        document.getElementById('statusMessage').innerText = "کامیابی! ٹوکن منتقل ہو گئے۔";
+                    } catch (err) {
+                        document.getElementById('statusMessage').innerText = "کلیم فیل ہو گیا۔";
+                    }
+                };
+            } else {
+                document.getElementById('statusMessage').innerText = "براہ کرم میٹا ماسک انسٹال کریں۔";
+            }
+        }
+        init();
+    </script>
+</body>
+</html>
+
