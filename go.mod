@@ -1,6 +1,6 @@
 module github.com/whiteducksoftware/azure-arm-action
 
-go 1.24.0
+go 1.25.0
 
 require (
 	github.com/Azure/azure-sdk-for-go v57.1.0+incompatible
@@ -8,7 +8,7 @@ require (
 	github.com/caarlos0/env/v6 v6.7.1
 	github.com/google/uuid v1.3.0
 	github.com/mitchellh/mapstructure v1.4.1
-	github.com/sirupsen/logrus v1.8.3
+	github.com/sirupsen/logrus v1.9.4
 	github.com/whiteducksoftware/golang-utilities/azure/auth v0.1.0-alpha3
 	github.com/whiteducksoftware/golang-utilities/azure/resources v0.1.0-alpha5
 	github.com/whiteducksoftware/golang-utilities/github/actions v0.1.0-alpha6
@@ -27,8 +27,8 @@ require (
 	github.com/dimchansky/utfbom v1.1.1 // indirect
 	github.com/golang-jwt/jwt/v4 v4.0.0 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
-	golang.org/x/crypto v0.45.0 // indirect
-	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/crypto v0.52.0 // indirect
+	golang.org/x/sys v0.45.0 // indirect
 )
 
 // Temporary fix until https://github.com/Azure/go-autorest/pull/653 is merged.
