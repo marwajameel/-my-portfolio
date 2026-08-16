@@ -1,0 +1,6 @@
+name = "my-portfolio"
+main = "src/index.js" # یہاں اپنی مین فائل کا پاتھ لکھیں
+compatibility_date = "2026-08-16"
+
+[vars]
+# اگر آپ کے کوئی اور ویری ایبلز ہیں تو یہاں لکھیں
