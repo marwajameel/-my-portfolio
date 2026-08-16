@@ -92,4 +92,4 @@ jobs:
         parameters: <path/to/parameters.json> OR <KEY=VALUE>
         deploymentName: <Deployment base name>
 ```
-For more advanced workflows see [examples/Advanced.md](examples/Advanced.md).
+For more advanced workflows see [examples/Advanced.md](examples/Advanced.md)
