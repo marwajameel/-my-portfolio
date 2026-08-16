@@ -2,7 +2,7 @@ name: Deploy to Cloudflare
 on:
   push:
     branches:
-      - main
+      - App.jsx
 jobs:
   deploy:
     runs-on: ubuntu-latest
